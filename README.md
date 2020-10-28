@@ -1,9 +1,6 @@
 # vuevuevue
 
 
-
-## WZWZ's Project 5组
-
 ## Project setup
 ```
 yarn install
@@ -24,5 +21,3 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
