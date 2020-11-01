@@ -2,35 +2,29 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import Home from '@/views/Home';
-import Login from '@/views/Login';
-import Register from '@/views/Register';
-import Search from '@/views/Search';
+
+const originPush = VueRouter.prototype.push;
+const originReplace = VueRouter.prototype.replace;
+VueRouter.prototype.push = function (localtion,resolved,reject) {
+    if(resolved === undefined && reject === undefined){
+        return originPush.call(this,localtion).catch(() => {})
+    }else{
+        return originPush.call(this,localtion)
+    }
+}
+
+VueRouter.prototype.replace = function (localtion,resolved,reject) {
+    if(resolved === undefined && reject === undefined){
+        return originReplace.call(this,localtion).catch(() => {})
+    }else{
+        return originReplace.call(this,localtion)
+    }
+}
+
+
+
+import routes from './routes'
 export default new VueRouter({
     mode:'history',
-    routes:[
-        {
-            path:'/home',
-            component:Home
-        },
-        {
-            path:'/login',
-            component:Login,
-            meta:{
-                isHidden:true
-            }
-        },
-        {
-            path:'/register',
-            component:Register,
-            meta:{
-                isHidden:true
-            }
-        },
-        {
-            path:'/search/:keyword',
-            component:Search,
-            name:'Search'
-        }
-    ]
+    routes
 })
