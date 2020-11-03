@@ -85,7 +85,6 @@ export default {
   name: "",
   mounted(){
     this.getBannerList()
-
   },
   methods:{
     getBannerList(){

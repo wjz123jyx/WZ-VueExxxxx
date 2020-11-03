@@ -9,12 +9,14 @@ const getters = {}
 
 
 import home from './home'
+import search from './search'
 export default new Vuex.Store({
     state,
     mutations,
     actions,
     getters,
     modules:{
-        home
+        home,
+        search
     }
 })

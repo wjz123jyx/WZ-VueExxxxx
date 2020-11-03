@@ -55,6 +55,9 @@ export default {
       keyword:''
     }
   },
+  mounted(){
+    this.$bus.$on('clearKeyword',this.clearKeyword)
+  },
   methods: {
     toSearch(){
       let location = {
@@ -68,6 +71,9 @@ export default {
         location.query = this.$route.query
       }
       this.$router.push(location)
+    },
+    clearKeyword(){
+      this.keyword = ''
     }
   },
 };

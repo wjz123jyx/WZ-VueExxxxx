@@ -23,5 +23,14 @@ export const reqFloorList = () => {
 }
 
 
+export const reqGoodsListInfo = (searchParams) => {
+    return Ajax({
+        url:'/list',
+        method:'post',
+        data:searchParams
+    })
+}
+
+// reqGoodsListInfo({})
 // reqCategoryList()
  
