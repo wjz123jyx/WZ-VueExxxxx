@@ -5,18 +5,22 @@
         <Recommend></Recommend>
         <Rank></Rank>
         <Like></Like>
-        <Floor></Floor>
+        <Floor v-for="(floor,index) in floorList" :key="floor.id" :floor='floor'></Floor>
         <Brand></Brand>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex';
     import ListContainer from './ListContainer';
     import Recommend from './Recommend';
     import Rank from './Rank';
     import Like from './Like';
     import Floor from './Floor';
-    import Brand from './Brand'
+    import Brand from './Brand';
+
+    // import 'swiper/css/swiper.css'
+
     export default {
         name: "Home",
         components:{
@@ -26,6 +30,19 @@
             Like,
             Floor,
             Brand
+        },
+        mounted(){
+            this.getFloorList()
+        },
+        methods:{
+          getFloorList(){
+            this.$store.dispatch('getFloorList')
+          }
+        },
+        computed:{
+            ...mapState({
+                floorList: state => state.home.floorList
+            })
         }
     };
 </script>

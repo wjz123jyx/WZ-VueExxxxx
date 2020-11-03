@@ -30,12 +30,13 @@
         <router-link to="/home" title="尚品汇"><img src="./images/logo.png" alt="" /></router-link>
       </h1>
       <div class="searchArea">
-        <form action="###" class="searchForm">
+        <form action="javascript:;" class="searchForm">
           <input
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
             v-model="keyword"
+            @keyup.enter='toSearch'
           />
           <button class="sui-btn btn-xlarge btn-danger" type="button" @click="toSearch">
             搜索
