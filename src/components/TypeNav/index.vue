@@ -45,10 +45,10 @@
         <a href="###">美妆馆</a>
         <a href="###">尚品汇超市</a>
         <a href="###">全球购</a>
-        <a href="###">闪购</a>
+        <a href="###">闪购<img src="../../assets/images/registerNew.gif" alt=""></a>
         <a href="###">团购</a>
         <a href="###">有趣</a>
-        <a href="###">秒杀</a>
+        <a href="###">秒杀<img src="../../assets/images/registerNew.gif" alt=""></a>
       </nav>
     </div>
   </div>
@@ -154,6 +154,12 @@ export default {
         line-height: 45px;
         font-size: 16px;
         color: #333;
+        position: relative;
+        img{
+          position: absolute;
+          left: 30px;
+          top: -10px;
+        }
       }
     }
 
@@ -251,7 +257,7 @@ export default {
           }
 
           &.item_on {
-            background: orange;
+            background: #fd645c;
             .item-list {
               display: block;
             }

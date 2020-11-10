@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
+import store from "@/store"
+
 
 const instance = axios.create({
     baseURL:'/api',
@@ -11,6 +13,16 @@ const instance = axios.create({
 //添加进度条信息
 //请求拦截器
 instance.interceptors.request.use(config => {
+    let userTempId = store.state.users.userTempId
+    if(userTempId){
+        config.headers.userTempId = userTempId
+    }
+
+
+    let token = store.state.users.userInfo.token;
+    if(token){
+        config.headers.token = token
+    }
     Nprogress.start()
     return config
 })

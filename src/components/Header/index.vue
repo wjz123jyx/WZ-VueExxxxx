@@ -6,15 +6,23 @@
       <div class="container">
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
-          <p>
+          <p v-if="$store.state.users.userInfo.name">
+            <!-- <router-link to="/login">登录</router-link> -->
+            <a href="javascript"><i class="iconfont icongeren2" style="margin-right:5px;color:#67a;font-width:900;"></i>{{$store.state.users.userInfo.name}}</a>
+            <!-- <router-link to="/register" class="register">免费注册</router-link> -->
+            <a href="javascript:;" class="register" @click="logout">退出登录</a>
+          </p>
+          <p v-else>
             <span>请</span>
             <router-link to="/login">登录</router-link>
             <router-link to="/register" class="register">免费注册</router-link>
           </p>
         </div>
         <div class="typeList">
-          <a href="###">我的订单</a>
-          <a href="###">我的购物车</a>
+          <!-- <a href="###">我的订单</a> -->
+          <router-link to="/center"><i class="iconfont icondingdan-" style="margin-right:5px;font-width:999;"></i>我的订单</router-link>
+          <!-- <a href="###">我的购物车</a> -->
+          <router-link to="/shopcart"><i class="iconfont icongouwuche" style="color:red;margin-right:5px;font-width:900;"></i>我的购物车</router-link>
           <a href="###">我的尚品汇</a>
           <a href="###">尚品汇会员</a>
           <a href="###">企业采购</a>
@@ -59,6 +67,7 @@ export default {
     this.$bus.$on('clearKeyword',this.clearKeyword)
   },
   methods: {
+    // 搜索框搜索
     toSearch(){
       let location = {
         name:'search',
@@ -70,10 +79,28 @@ export default {
       if(this.$route.query){
         location.query = this.$route.query
       }
-      this.$router.push(location)
+
+      if(this.$route.path !== '/home'){
+        this.$router.replace(location)
+      }else{
+        this.$router.push(location)
+      }
     },
     clearKeyword(){
-      this.keyword = ''
+      this.keyword = '';
+    },
+    // 退出登录
+    async logout(){
+      try {
+        const result = await this.$store.dispatch('userLogout');
+        if(result === 'ok'){
+          alert('退出登录成功');
+        }else{
+          alert('退出失败');
+        }
+      } catch (error) {
+          alert('退出失败');
+      }
     }
   },
 };
